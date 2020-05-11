@@ -1,0 +1,50 @@
+{% extends 'templates/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block body %}
+<h2>SEARCH</h2>
+<form method="POST" enctype="multipart/form-data">
+    <input type="text" name="search">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button class="btn-primary" type="submit">search</button>
+    <br><br><br>
+
+    {% if empty %}
+    <h3><i>Empty input field</i></h3>
+    {% elif mess %}
+    <h3><i>Wrong characters</i></h3>
+    {% elif not result %}
+    <h3><i>Empty result</i></h3>
+    {% else %}
+    <table class="table" border>
+        <thead>
+            <tr>
+                <th><h3>Name</h3></th>
+                <th><h3>Description</h3></th>
+                <th><h3>Download</h3></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for file in result %}
+                <tr>
+                    <td><h3>{{ file.my_file }}</h3></td>
+                    <td><h3>{{ file.description }}</h3></td>
+                    <td>
+                        <h3><a href="{{ file.my_file.url }} " class="btn btn-primary btn-sm" target="blank">
+                            Download file
+                        </a></h3>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    
+
+
+
+</form>
+
+{% endblock %}

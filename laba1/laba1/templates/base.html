@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    </head>
+    <body>
+        <p>
+            <a href="{% url 'search' %}" class="btn btn-primary">Search File</a>
+        </p>
+        <p>
+            <a href="{% url 'upload_book' %}" class="btn btn-primary">Upload file</a>
+        </p>
+
+        {% block body %}
+
+        {% endblock %}
+    </body>
+</html>
